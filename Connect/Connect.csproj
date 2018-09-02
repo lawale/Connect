@@ -235,9 +235,56 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809021525332_Initial-Model.cs" />
+    <Compile Include="Migrations\201809021525332_Initial-Model.Designer.cs">
+      <DependentUpon>201809021525332_Initial-Model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809021536160_AddCategoryAndVocationModel.cs" />
+    <Compile Include="Migrations\201809021536160_AddCategoryAndVocationModel.Designer.cs">
+      <DependentUpon>201809021536160_AddCategoryAndVocationModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809021538113_PopulateCategories.cs" />
+    <Compile Include="Migrations\201809021538113_PopulateCategories.Designer.cs">
+      <DependentUpon>201809021538113_PopulateCategories.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809021609306_PopulateArtisticCategory.cs" />
+    <Compile Include="Migrations\201809021609306_PopulateArtisticCategory.Designer.cs">
+      <DependentUpon>201809021609306_PopulateArtisticCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809021626121_PopulateComputerCategory.cs" />
+    <Compile Include="Migrations\201809021626121_PopulateComputerCategory.Designer.cs">
+      <DependentUpon>201809021626121_PopulateComputerCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809021643577_PopulateDriverCategory.cs" />
+    <Compile Include="Migrations\201809021643577_PopulateDriverCategory.Designer.cs">
+      <DependentUpon>201809021643577_PopulateDriverCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809021648455_PopulateDancerCategory.cs" />
+    <Compile Include="Migrations\201809021648455_PopulateDancerCategory.Designer.cs">
+      <DependentUpon>201809021648455_PopulateDancerCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809021654588_PopulateFilmCategory.cs" />
+    <Compile Include="Migrations\201809021654588_PopulateFilmCategory.Designer.cs">
+      <DependentUpon>201809021654588_PopulateFilmCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809021716054_PopulateWriterCategory.cs" />
+    <Compile Include="Migrations\201809021716054_PopulateWriterCategory.Designer.cs">
+      <DependentUpon>201809021716054_PopulateWriterCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809021732145_PopulateTechnicalCategory.cs" />
+    <Compile Include="Migrations\201809021732145_PopulateTechnicalCategory.Designer.cs">
+      <DependentUpon>201809021732145_PopulateTechnicalCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809021739144_PopulateSewingCategory.cs" />
+    <Compile Include="Migrations\201809021739144_PopulateSewingCategory.Designer.cs">
+      <DependentUpon>201809021739144_PopulateSewingCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Category.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Vocation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
@@ -353,6 +400,41 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201809021525332_Initial-Model.resx">
+      <DependentUpon>201809021525332_Initial-Model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809021536160_AddCategoryAndVocationModel.resx">
+      <DependentUpon>201809021536160_AddCategoryAndVocationModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809021538113_PopulateCategories.resx">
+      <DependentUpon>201809021538113_PopulateCategories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809021609306_PopulateArtisticCategory.resx">
+      <DependentUpon>201809021609306_PopulateArtisticCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809021626121_PopulateComputerCategory.resx">
+      <DependentUpon>201809021626121_PopulateComputerCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809021643577_PopulateDriverCategory.resx">
+      <DependentUpon>201809021643577_PopulateDriverCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809021648455_PopulateDancerCategory.resx">
+      <DependentUpon>201809021648455_PopulateDancerCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809021654588_PopulateFilmCategory.resx">
+      <DependentUpon>201809021654588_PopulateFilmCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809021716054_PopulateWriterCategory.resx">
+      <DependentUpon>201809021716054_PopulateWriterCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809021732145_PopulateTechnicalCategory.resx">
+      <DependentUpon>201809021732145_PopulateTechnicalCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809021739144_PopulateSewingCategory.resx">
+      <DependentUpon>201809021739144_PopulateSewingCategory.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
