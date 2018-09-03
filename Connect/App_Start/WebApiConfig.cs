@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Web.Http;
 using Microsoft.Owin.Security.OAuth;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
 namespace Connect
@@ -16,6 +17,14 @@ namespace Connect
             // Configure Web API to use only bearer token authentication.
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
+
+            config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling
+                = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+
+
+            var setting = config.Formatters.JsonFormatter.SerializerSettings;
+            setting.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            setting.Formatting = Formatting.Indented;
 
             // Web API routes
             config.MapHttpAttributeRoutes();
