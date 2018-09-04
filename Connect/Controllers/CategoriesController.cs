@@ -28,10 +28,11 @@ namespace Connect.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Category> GetCategories()
+        public IEnumerable<CategoryResource> GetCategories()
         {
             var categories = context.Categories.Include(x => x.Vocations).ToList();
-            return categories;
+            var categoryResource = Mapper.Map<List<Category>, List<CategoryResource>>(categories);
+            return categoryResource;
         }
     }
 }

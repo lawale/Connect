@@ -13,7 +13,8 @@ namespace Connect.App_Start
         public MappingProfile()
         {
             CreateMap<Category, CategoryResource>();
-            CreateMap<Vocation, VocationResource>();
+            CreateMap<Vocation, VocationResource>()
+                .ForMember(v => v.Category, opt => opt.MapFrom(x => x.Category.Name));
         }
     }
 }

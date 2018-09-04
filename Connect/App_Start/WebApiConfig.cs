@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Runtime.Serialization;
 using System.Web.Http;
+using Connect.Models;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -20,6 +22,11 @@ namespace Connect
 
             config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling
                 = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+
+            var xml = GlobalConfiguration.Configuration.Formatters.XmlFormatter;
+            var dcs = new DataContractSerializer(typeof(Category), null, int.MaxValue,
+                false, /* preserveObjectReferences: */ true, null);
+            config.Formatters.XmlFormatter.SetSerializer<Category>(dcs);
 
 
             var setting = config.Formatters.JsonFormatter.SerializerSettings;

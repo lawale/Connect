@@ -32,10 +32,11 @@ namespace Connect.Controllers
         //}
 
         [HttpGet]
-        public IEnumerable<Vocation> GetVocations()
+        public IEnumerable<VocationResource> GetVocations()
         {
             var vocations = context.Vocations.Include(x => x.Category).ToList();
-            return vocations;
+            var vocationResource = Mapper.Map<List<Vocation>, List<VocationResource>>(vocations);
+            return vocationResource;
         }
         protected override void Dispose(bool disposing)
         {

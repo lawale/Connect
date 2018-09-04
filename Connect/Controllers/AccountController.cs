@@ -16,6 +16,7 @@ using Microsoft.Owin.Security.OAuth;
 using Connect.Models;
 using Connect.Providers;
 using Connect.Results;
+using System.IO;
 
 namespace Connect.Controllers
 {
@@ -125,7 +126,7 @@ namespace Connect.Controllers
 
             IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword,
                 model.NewPassword);
-            
+
             if (!result.Succeeded)
             {
                 return GetErrorResult(result);
@@ -250,7 +251,7 @@ namespace Connect.Controllers
                 return new ChallengeResult(provider, this);
             }
 
-            ApplicationUser user = await UserManager.FindAsync(new UserLoginInfo(externalLogin.LoginProvider,
+            User user = await UserManager.FindAsync(new UserLoginInfo(externalLogin.LoginProvider,
                 externalLogin.ProviderKey));
 
             bool hasRegistered = user != null;
@@ -258,9 +259,9 @@ namespace Connect.Controllers
             if (hasRegistered)
             {
                 Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-                
-                 ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
-                    OAuthDefaults.AuthenticationType);
+
+                ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
+                   OAuthDefaults.AuthenticationType);
                 ClaimsIdentity cookieIdentity = await user.GenerateUserIdentityAsync(UserManager,
                     CookieAuthenticationDefaults.AuthenticationType);
 
@@ -328,16 +329,60 @@ namespace Connect.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            var user = new User() { UserName = model.Email, Email = model.Email, DisplayPhoto = model.DisplayPhoto };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
             if (!result.Succeeded)
             {
+                DeleteImage(model.DisplayPhoto);
                 return GetErrorResult(result);
             }
 
             return Ok();
+        }
+
+        private void DeleteImage(string name)
+        {
+            var path = HttpContext.Current.Server.MapPath($"~/uploads/{name}");
+            if (Directory.Exists(path))
+            {
+                Directory.Delete(path);
+            }
+        }
+
+        [Route("api/Files/Upload")]
+        public IHttpActionResult Upload()
+        {
+            try
+            {
+                var httpRequest = HttpContext.Current.Request;
+                if(httpRequest.Files.Count > 0)
+                {
+                    foreach(string file in httpRequest.Files)
+                    {
+                        var uploadedFile = httpRequest.Files[file];
+                        var folderPath = HttpContext.Current.Server.MapPath("~/Uploads");
+                        if(!Directory.Exists(folderPath))
+                        {
+                            Directory.CreateDirectory(folderPath);
+                        }
+                        var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file);
+                        var filePath = Path.Combine(folderPath, fileName);
+                        uploadedFile.SaveAs(filePath);
+                        return Ok(filePath);
+                    }
+                }
+                else
+                {
+                    return BadRequest("No Files");
+                }
+            }
+            catch(Exception ex)
+            {
+                
+            }
+            return BadRequest("Unable to save file");
         }
 
         // POST api/Account/RegisterExternal
@@ -357,7 +402,7 @@ namespace Connect.Controllers
                 return InternalServerError();
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            var user = new User() { UserName = model.Email, Email = model.Email };
 
             IdentityResult result = await UserManager.CreateAsync(user);
             if (!result.Succeeded)
