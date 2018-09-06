@@ -342,16 +342,21 @@ namespace Connect.Controllers
             return Ok();
         }
 
-        private void DeleteImage(string name)
+        
+        private IHttpActionResult DeleteImage(string name)
         {
-            var path = HttpContext.Current.Server.MapPath($"~/uploads/{name}");
-            if (Directory.Exists(path))
+            var path = HttpContext.Current.Server.MapPath($"~/uploads/{name}.png");
+            if (File.Exists(path))
             {
-                Directory.Delete(path);
+                File.Delete(path);
+                return Ok("File Deleted");
             }
+            return BadRequest("File Does not exist");
         }
 
-        [Route("api/Files/Upload")]
+        [AllowAnonymous]
+        [Route("Upload")]
+        [HttpPost]
         public IHttpActionResult Upload()
         {
             try
@@ -369,8 +374,9 @@ namespace Connect.Controllers
                         }
                         var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file);
                         var filePath = Path.Combine(folderPath, fileName);
+                        filePath = Path.ChangeExtension(filePath, "png");
                         uploadedFile.SaveAs(filePath);
-                        return Ok(filePath);
+                        return Ok(Path.GetFileNameWithoutExtension(filePath));
                     }
                 }
                 else

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Cmobile.ViewModels"
+             x:Class="Cmobile.Views.RegisterPage">
+    <ContentPage.BindingContext>
+        <vm:RegisterViewModel/>
+    </ContentPage.BindingContext>
+
+    <StackLayout Orientation="Vertical" Padding="30,20,30,0">
+        <Image BackgroundColor="Black" Source="{Binding DisplayPhoto}" Aspect="AspectFill" HeightRequest="220"/>
+        <Entry Text="{Binding Email}" Placeholder="Email" PlaceholderColor="Gray" />
+        <Entry Text="{Binding Password}" Placeholder="Password" PlaceholderColor="Gray" IsPassword="True" />
+        <Entry Text="{Binding ConfirmPassword}" Placeholder="Confirm Password" PlaceholderColor="Gray" IsPassword="True" />
+        <Label Text="Set Profile Picture" HorizontalOptions="Center" />
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            <Button Text="Pick a file" CornerRadius="10" Command="{Binding PickFile}" />
+            <Button Text="Use Camera" CornerRadius="10" Command="{Binding TakePhoto}" />
+        </StackLayout>
+        <Button Command="{Binding Register}" Text="Register" CornerRadius="20" WidthRequest="300" BackgroundColor="Red" HorizontalOptions="Center" />
+    </StackLayout>
+</ContentPage>
