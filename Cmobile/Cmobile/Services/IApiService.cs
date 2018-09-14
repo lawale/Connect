@@ -9,5 +9,6 @@ namespace Cmobile.Services
     {
         Task<bool> RegisterAsync(string email, string password, string confirmPassword, string displayPhoto);
         Task<bool> UploadPhoto();
+        Task LoginAsync(string uName, string uPass);
     }
 }

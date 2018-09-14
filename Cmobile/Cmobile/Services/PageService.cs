@@ -15,6 +15,11 @@ namespace Cmobile.Services
             
         }
 
+        public async Task PushPageAsync(Page page)
+        {
+            await MainPage.Navigation.PushAsync(page);
+        }
+
         public async Task DisplayAlert(string Title, string Message, string Cancel)
         {
             await MainPage.DisplayAlert(Title, Message, Cancel);

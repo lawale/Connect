@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:CI="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             BackgroundColor="DodgerBlue"
+             x:Class="Cmobile.Views.ExternalProfileViewPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="labels" TargetType="Label">
+                <Setter Property="TextColor" Value="#46460B"/>
+                <Setter Property="FontSize" Value="20"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid Padding="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+        <CI:CircleImage  Aspect="AspectFill" Grid.Row="0" />
+        <StackLayout Orientation="Vertical"  Padding="0,20,0,0" Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="15">
+            <Label TextColor="#46460B" Text="Lawal Olawale" FontSize="25" HorizontalOptions="Center"/>
+            <Label Text="Phone Contact" Style="{StaticResource Key=labels}"/>
+            <Label Text="Email:" Style="{StaticResource Key=labels}"/>
+            <Label Text="Self Description" Style="{StaticResource Key=labels}"/>
+            <Editor HeightRequest="150" BackgroundColor="White" TextColor="Black" 
+                    />
+        </StackLayout>
+    </Grid>
+</ContentPage>

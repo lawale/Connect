@@ -10,5 +10,6 @@ namespace Cmobile.Helpers
         public static readonly string Url = "http://localhost:61393/";
         public static readonly string RegisterRoute = Path.Combine(Url, "api/Account/Register");
         public static readonly string UploadPhotoRoute = Path.Combine(Url, "api/Files/Upload");
+        public static readonly string LogIn = Path.Combine(Url, "Token");
     }
 }

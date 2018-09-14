@@ -10,16 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace Cmobile.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class RegisterPage : ContentPage
+	public partial class UserProfile : ContentPage
 	{
-		public RegisterPage ()
+		public UserProfile ()
 		{
 			InitializeComponent ();
 		}
-
-        private async void Button_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new LoginPage());
-        }
-    }
+	}
 }
